@@ -28,15 +28,19 @@ class Customer(User):
         if self.email == email and self.password == password:
             print('--------Welcome to our shop,sir ---------')
             print('--------Here is our product lsit:--------')
+            print()
             store.show_shop()
         else:
             print('Incorrect password or email, Please registration first!')
             self.customer_registration()
 
     def customer_registration(self):
-        self.name = input('ENTER YOUR NAME: ')
-        self.email = input('ENTER YOUR EMAIL: ')
-        self.set_password = input('SET A NEW PASSWORD: ')
+        name = input('ENTER YOUR NAME: ')
+        email = input('ENTER YOUR EMAIL: ')
+        password = input('SET A NEW PASSWORD: ')
+        self.name = name
+        self.email = email
+        self.password = password
         print('Your registration completed, Login Now!')
         self.customer_login()
 

@@ -16,10 +16,10 @@ def main():
     store.add_product(product_3)
 
     #showing store
-    store.show_shop()
+    # store.show_shop()
 
     #creating customer
-    customer_1 = Customer('Naim', 'naim@gmail.com', '123', 'Barishal', 234)
+    customer_1 = Customer('Naim', 'a', '1', 'Barishal', 234)
     customer_1.customer_login(store)
 
 if __name__ == '__main__':
