@@ -14,8 +14,6 @@ class Shop:
             for product in self.products:
                 print(f'PRODUCT NAME: {product.name}, PRICE: {product.price}, QUANTITY: {product.quantity}')
 
-
-
 class Product:
     def __init__(self, name, price, quantity) -> None:
         self.name = name

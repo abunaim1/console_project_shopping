@@ -68,11 +68,19 @@ class Seller(User):
     def __init__(self, name, email, password) -> None:
         self.email = email
         self.password = password
-        self.wallet = 0
+        self.__wallet = 0
         self.profit = 0
         self.sell_list = []
         super().__init__(name)
     
+    @property
+    def wallet(self):
+        return self.__wallet
+    
+    @wallet.setter
+    def wallet(self, cash):
+        self.__wallet = cash
+
     def seller_login(self, store):
         email = input('ENTER YOUR EMAIL: ')
         password = input('ENTER YOUR PASSWORD: ')
@@ -97,15 +105,16 @@ class Seller(User):
         self.password = password
         print('Your registration completed, Login Now!')
 
-    def delivery_product(self, date_time):
+    @staticmethod
+    def delivery_product(date_time):
         print(f'Your estimate delivery date {date_time}')
 
-    @classmethod
-    def seller_wallet(self,amount):
+    @staticmethod
+    def seller_wallet(amount):
         wallet = 0
         wallet += amount
-        self.balance(Seller, wallet)
-
+        Seller.balance(Seller, wallet)
+    
     def balance(self, cash):
         self.wallet = cash
         self.delivery_product('31 Dec, 2023')
