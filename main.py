@@ -16,7 +16,7 @@ def main():
     store.add_product(product_3)
 
     #creating customer
-    customer_1 = Customer('Naim', 'a', 'a')
+    customer_1 = Customer('Naim', 'a', 'a', 3000)
     seller_1 = Seller('Fahad', 'a', 'a')
 
     while True:

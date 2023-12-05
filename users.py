@@ -4,8 +4,8 @@ class User:
         self.name = name
     
 class Customer(User):
-    def __init__(self, name, email, password) -> None:
-        self.wallet = 0
+    def __init__(self, name, email, password, amount) -> None:
+        self.wallet = amount
         self.cart = []
         self.wishlist = []
         self.email = email
@@ -19,6 +19,7 @@ class Customer(User):
             print('--------Welcome to our shop,sir ---------')
             print('--------Here is our product lsit:--------')
             store.show_shop()
+            self.buy_product(store.products)
         else:
             print('Incorrect password or email, Please registration first!')
             self.customer_registration()
@@ -35,16 +36,27 @@ class Customer(User):
     def wishlist(self, product):
         pass
 
-    def add_to_cart():
-        # for product in store.products:
-            # print(product.name)
-            pass
+    def add_to_cart(self, product):
+        print(f'Product Pric: {product.price} + vat 5%')
+        total_bill = product.price + product.price * 5/100
+        self.pay_bill(total_bill)
+        
+    def buy_product(self, products):
+        print('Select a product: ')
+        buy = input()
+        match = False
+        for product in products:
+            if product.quantity > 0:
+                if buy == product.name:
+                    self.add_to_cart(product)
+                    match = True
+        if match == False:
+            print('Not available!')
 
-    def buy_product(self, product):
-        pass
-    
     def pay_bill(self, amount):
-        pass
+        print(f'Have to pay: {amount}')
+        Seller.seller_wallet(amount)
+        self.wallet - amount
 
     def show_cart(self):
         pass
@@ -56,11 +68,9 @@ class Seller(User):
     def __init__(self, name, email, password) -> None:
         self.email = email
         self.password = password
-        self.balance = 0
+        self.wallet = 0
         self.profit = 0
         self.sell_list = []
-        self.email = None
-        self.password = None
         super().__init__(name)
     
     def seller_login(self, store):
@@ -88,6 +98,16 @@ class Seller(User):
         print('Your registration completed, Login Now!')
 
     def delivery_product(self, date_time):
-        pass
+        print(f'Your estimate delivery date {date_time}')
 
-# Customer.add_to_cart()
+    @classmethod
+    def seller_wallet(self,amount):
+        wallet = 0
+        wallet += amount
+        self.balance(Seller, wallet)
+
+    def balance(self, cash):
+        self.wallet = cash
+        self.delivery_product('31 Dec, 2023')
+    
+        
